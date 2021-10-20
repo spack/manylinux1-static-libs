@@ -185,8 +185,8 @@ yum -y install ${MANYLINUX1_DEPS}
 yum -y clean all > /dev/null 2>&1
 yum list installed
 
-# we don't need libpython*.a, and they're many megabytes
-find /opt/_internal -name '*.a' -print0 | xargs -0 rm -f
+# Avoid deleting libpython.a as we need it to build Clingo
+# find /opt/_internal -name '*.a' -print0 | xargs -0 rm -f
 
 # Strip what we can -- and ignore errors, because this just attempts to strip
 # *everything*, including non-ELF files:
